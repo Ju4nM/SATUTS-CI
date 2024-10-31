@@ -32,5 +32,3 @@ jobs:
         run: npm run test:e2e
       - name: Building
         run: npm run build
-      - name: Deploying to production
-        run: npm run start:prod
