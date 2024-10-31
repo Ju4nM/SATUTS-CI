@@ -10,6 +10,15 @@ concurrency:
 jobs:
   CI:
     runs-on: ubuntu-latest
+    env:
+      APP_ENVIRONMENT: ${{ vars.APP_ENVIRONMENT }}
+      ALLOWED_ORIGIN: ${{ vars.ALLOWED_ORIGIN }}
+      DB_HOST: ${{ vars.DB_HOST }}
+      DB_PORT: ${{ vars.DB_PORT }}
+      DB_USER: ${{ vars.DB_USER }}
+      DB_PASSWORD: ${{ vars.DB_PASSWORD }}
+      DB_NAME: ${{ vars.DB_NAME }}
+      JWT_SECRET: ${{ vars.JWT_SECRET }}
 
     steps:
       - uses: actions/checkout@v4
