@@ -10,15 +10,6 @@ concurrency:
 jobs:
   CI:
     runs-on: ubuntu-latest
-    env:
-      APP_ENVIRONMENT: ${{ vars.APP_ENVIRONMENT }}
-      ALLOWED_ORIGIN: ${{ vars.ALLOWED_ORIGIN }}
-      DB_HOST: ${{ vars.DB_HOST }}
-      DB_PORT: ${{ vars.DB_PORT }}
-      DB_USER: ${{ vars.DB_USER }}
-      DB_PASSWORD: ${{ vars.DB_PASSWORD }}
-      DB_NAME: ${{ vars.DB_NAME }}
-      JWT_SECRET: ${{ vars.JWT_SECRET }}
 
     steps:
       - uses: actions/checkout@v4
@@ -27,14 +18,14 @@ jobs:
           node-version: 20.18.x
       - name: Create .env file
         run: |
-          echo APP_ENVIRONMENT: ${{ vars.APP_ENVIRONMENT }} >> .env
-          echo ALLOWED_ORIGIN: ${{ vars.ALLOWED_ORIGIN }} >> .env
-          echo DB_HOST: ${{ vars.DB_HOST }} >> .env
-          echo DB_PORT: ${{ vars.DB_PORT }} >> .env
-          echo DB_USER: ${{ vars.DB_USER }} >> .env
-          echo DB_PASSWORD: ${{ vars.DB_PASSWORD }} >> .env
-          echo DB_NAME: ${{ vars.DB_NAME }} >> .env
-          echo JWT_SECRET: ${{ vars.JWT_SECRET }} >> .env
+          echo APP_ENVIRONMENT = ${{ secrets.APP_ENVIRONMENT }} >> .env
+          echo ALLOWED_ORIGIN = ${{ secrets.ALLOWED_ORIGIN }} >> .env
+          echo DB_HOST = ${{ secrets.DB_HOST }} >> .env
+          echo DB_PORT = ${{ secrets.DB_PORT }} >> .env
+          echo DB_USER = ${{ secrets.DB_USER }} >> .env
+          echo DB_PASSWORD = ${{ secrets.DB_PASSWORD }} >> .env
+          echo DB_NAME = ${{ secrets.DB_NAME }} >> .env
+          echo JWT_SECRET = ${{ secrets.JWT_SECRET }} >> .env
       - name: Install dependencies
         run: npm ci
       - name: Run tests
